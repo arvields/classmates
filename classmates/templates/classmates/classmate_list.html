@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+	body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Center the heading and style it */
+        h1 {
+            text-align: center;
+            color: #000000;
+            font-size: 48px;
+            margin: 20px 0;
+        }
+
+        /* Add the same table styles as before */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        /* Style the "New" link */
+        .new-link {
+            display: block;
+            width: 100px;
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin: 20px auto;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>4th Year BS in Information Technology Students</h1>
+
+    <a class="new-link" href="{% url "classmate_new" %}">New</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Birthdate</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for classmate in object_list %}
+                <tr>
+                    <td>{{ classmate.firstname }}</td>
+                    <td>{{ classmate.lastname }}</td>
+                    <td>{{ classmate.age }}</td>
+                    <td>{{ classmate.birthdate }}</td>
+                    <td><a href="{% url "classmate_view" classmate.id %}">View</a></td>
+                    <td><a href="{% url "classmate_edit" classmate.id %}">Edit</a></td>
+                    <td><a href="{% url "classmate_delete" classmate.id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
